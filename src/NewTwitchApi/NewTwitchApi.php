@@ -9,6 +9,7 @@ use NewTwitchApi\Auth\OauthApi;
 use NewTwitchApi\Resources\GamesApi;
 use NewTwitchApi\Resources\StreamsApi;
 use NewTwitchApi\Resources\UsersApi;
+use NewTwitchApi\Resources\VideosApi;
 use NewTwitchApi\Resources\WebhooksApi;
 use NewTwitchApi\Webhooks\WebhooksSubscriptionApi;
 
@@ -18,6 +19,7 @@ class NewTwitchApi
     private $gamesApi;
     private $streamsApi;
     private $usersApi;
+    private $videosApi;
     private $webhooksApi;
     private $webhooksSubscriptionApi;
 
@@ -29,6 +31,7 @@ class NewTwitchApi
         $this->usersApi = new UsersApi($helixGuzzleClient);
         $this->webhooksApi = new WebhooksApi($helixGuzzleClient);
         $this->webhooksSubscriptionApi = new WebhooksSubscriptionApi($clientId, $clientSecret, $helixGuzzleClient);
+        $this->videosApi = new VideosApi($helixGuzzleClient);
     }
 
     public function getOauthApi(): OauthApi
@@ -49,6 +52,11 @@ class NewTwitchApi
     public function getUsersApi(): UsersApi
     {
         return $this->usersApi;
+    }
+
+    public function getVideosApi(): VideosApi
+    {
+        return $this->videosApi;
     }
 
     public function getWebhooksApi(): WebhooksApi
