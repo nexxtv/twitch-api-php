@@ -10,14 +10,16 @@ use Psr\Http\Message\ResponseInterface;
 class VideosApi extends AbstractResource
 {
 
-    public function getVideos($videoID,$userID){
+    public function getVideos($videoID,$userID):ResponseInterface{
 
-        $params = [];
-        $params['id'] = $videoID;
-        $params['user_id'] = $userID;
+        $params = [
+            ['key' => 'user_id', 'value' => $userID],
+            ['key' => 'first', 'value' => 25],
+            ['key' => 'type', 'value' => 'all']
+        ];
 
 
-        $this->callApi('videos?id='.$videoID.'&user_id='.$userID);
+        return $this->callApi('videos',$params);
     }
 
 }

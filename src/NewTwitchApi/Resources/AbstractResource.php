@@ -42,8 +42,10 @@ abstract class AbstractResource
      */
     protected function generateQueryParams(array $queryParamsMap): string
     {
+        \engine::debug('start debug','','',true);
         $queryStringParams = '';
         foreach ($queryParamsMap as $paramMap) {
+            \engine::debug($paramMap,'','',true);
             if ($paramMap['value']) {
                 $format = is_int($paramMap['value']) ? '%d' : '%s';
                 $queryStringParams .= sprintf('&%s='.$format, $paramMap['key'], $paramMap['value']);
